@@ -23,17 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     int registerMode = 0;
 
-    public void validateResponse(Response<ResponseBody> response){
-        if(response.code() == 201){
-            Log.i("SIGNUP","Login successfull");
-            Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT ).show();
-        }
-        else{
-            Log.i("SIGNUP","Login unsuccessfull");
-            Toast.makeText(this, "Sign up unsuccessful", Toast.LENGTH_SHORT ).show();
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,26 +40,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //SE REGISTRA
                 if(registerMode == 1) {
+
                     title_game.setVisibility(View.VISIBLE); email_text.setVisibility(View.INVISIBLE);
                     changeLogin_btn.setText("Don't have an account? Click here to register"); registerMode = 0;
+
                     try {
                        Call<ResponseBody> call = MyApiAdapter.getApiService().signUp(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
 
                         call.enqueue(new Callback<ResponseBody>() {
+
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
                                 validateResponse(response);
-                                if(response.isSuccessful())
-                                {
-                                    Toast.makeText(getApplicationContext(), "Registrado correctamente", Toast.LENGTH_SHORT).show();
-                                }
                             }
 
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(), "Registro incorrecto", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Sign up unsuccessful", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -79,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.i("SIGNUP", "Exception: " + e.getMessage());
                     }
                 }
-
-                //INICIA SESIÓN
                 else {
                     Call<ResponseBody> call = MyApiAdapter.getApiService().login(user_text.getText().toString(), password_text.getText().toString());
                     call.enqueue(new Callback<ResponseBody>() {
@@ -124,5 +110,15 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
+    }
+
+    public void validateResponse(Response<ResponseBody> response) {
+
+        if(response.code() == 201){
+            Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT ).show();
+        }
+        else{
+            Toast.makeText(this, "Sign up unsuccessful", Toast.LENGTH_SHORT ).show();
+        }
     }
 }
