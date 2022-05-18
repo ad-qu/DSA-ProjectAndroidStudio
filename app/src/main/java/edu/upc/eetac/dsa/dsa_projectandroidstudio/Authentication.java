@@ -15,7 +15,7 @@ public interface Authentication {
     @POST("/logIn/{username}/{password}")
     Call<ResponseBody>login(@Body User u);
 
-    @POST("signup")
+    @POST("/addUser/{username}/{password}/{email}")
     Call<ResponseBody>signUp(@Body User u);
 
     @GET("userInfo/{id}")
