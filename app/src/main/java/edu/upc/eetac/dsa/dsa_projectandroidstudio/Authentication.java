@@ -13,12 +13,9 @@ import retrofit2.http.Path;
 public interface Authentication {
 
     @POST("/logIn/{username}/{password}")
-    Call<ResponseBody>login(@Body User u);
+    Call<ResponseBody>login(@Path("user") String user, @Path("password") String password);
 
     @POST("/addUser/{username}/{password}/{email}")
-    Call<ResponseBody>signUp(@Body User u);
-
-    @GET("userInfo/{id}")
-    Call<User> getUser(@Path("id") String id);
+    Call<ResponseBody>signUp(@Path("user") String user, @Path("password") String password, @Path("email") String email);
 }
 
