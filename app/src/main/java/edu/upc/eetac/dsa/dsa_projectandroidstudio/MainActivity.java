@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(registerMode == 0) {
                     title_game.setVisibility(View.INVISIBLE); email_text.setVisibility(View.VISIBLE);
-                    changeLogin_btn.setText("Have an account? Click here to login"); registerMode = 1;
+                    changeLogin_btn.setText("Already have an account? Click here to login"); registerMode = 1;
                 }
                 else {
                     title_game.setVisibility(View.VISIBLE); email_text.setVisibility(View.INVISIBLE);
