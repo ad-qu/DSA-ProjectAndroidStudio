@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     title_game.setVisibility(View.VISIBLE); email_text.setVisibility(View.INVISIBLE);
                     changeLogin_btn.setText("Don't have an account? Click here to register"); registerMode = 0;
                     try {
-                        User u = new User(email_text.getText().toString(), user_text.getText().toString(), password_text.getText().toString());
-
-                        Call<ResponseBody> call = MyApiAdapter.getApiService().signUp(email_text.getText().toString(), user_text.getText().toString(), password_text.getText().toString());
+                       Call<ResponseBody> call = MyApiAdapter.getApiService().signUp(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
 
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
