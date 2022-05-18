@@ -29,8 +29,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //IF USUARIO INICIA SESIÓN
-                openMenuActivity();
+
+                //SE REGISTRA
+                if(registerMode == 1) {
+
+                    title_game.setVisibility(View.VISIBLE); email_text.setVisibility(View.INVISIBLE);
+                    changeLogin_btn.setText("Don't have an account? Click here to register"); registerMode = 0;
+                }
+
+                //INICIA SESIÓN
+                else {
+                    openMenuActivity();
+                }
             }
         });
 
