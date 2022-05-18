@@ -82,7 +82,23 @@ public class MainActivity extends AppCompatActivity {
 
                 //INICIA SESIÓN
                 else {
-                    openMenuActivity();
+                    Call<ResponseBody> call = MyApiAdapter.getApiService().login(user_text.getText().toString(), password_text.getText().toString());
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            validateResponse(response);
+                            if (response.isSuccessful())
+                            {
+                                openMenuActivity();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "Error logging in",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });
