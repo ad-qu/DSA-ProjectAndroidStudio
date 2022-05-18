@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                Log.i("SIGNUP", "Failure: " + t.getMessage());
+                                Toast.makeText(getApplicationContext(), "Registro incorrecto", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
