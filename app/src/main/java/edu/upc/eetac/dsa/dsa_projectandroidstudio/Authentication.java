@@ -12,7 +12,13 @@ import retrofit2.http.Path;
 
 public interface Authentication {
 
-    @POST("login")
-    Call<ResponseBody>loginUser(@Body User u);
+    @POST("/logIn/{username}/{password}")
+    Call<ResponseBody>login(@Body User u);
+
+    @POST("signup")
+    Call<ResponseBody>signUp(@Body User u);
+
+    @GET("userInfo/{id}")
+    Call<User> getUser(@Path("id") String id);
 }
 
