@@ -1,20 +1,14 @@
 package edu.upc.eetac.dsa.dsa_projectandroidstudio;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
+import android.security.keystore.UserPresenceUnavailableException;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,6 +16,8 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     int registerMode = 0;
+    ApiServices services;
+    User userAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,54 +31,97 @@ public class MainActivity extends AppCompatActivity {
         TextView changeLogin_btn = (TextView) findViewById(R.id.textViewLogin);
         View title_game = (View) findViewById(R.id.logoMain);
 
+        services = ApiRetrofit.getApiService().create(ApiServices.class);
+
         go_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
+                //REGISTERING A USER
                 if(registerMode == 1) {
 
-                    title_game.setVisibility(View.VISIBLE); email_text.setVisibility(View.INVISIBLE);
-                    changeLogin_btn.setText("Don't have an account? Click here to register"); registerMode = 0;
-
                     try {
-                       Call<ResponseBody> call = MyApiAdapter.getApiService().signUp(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
+                       Call<User> call = services.signUp(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
 
-                        call.enqueue(new Callback<ResponseBody>() {
+                        call.enqueue(new Callback<User>() {
 
                             @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            public void onResponse(Call<User> call, Response<User> response) {
 
-                                validateResponse(response);
+                                if(response.code() == 200) {
+
+                                    Log.d("User", "Registration completed");
+                                    Toast.makeText(getApplicationContext(),"Account successfully created", Toast.LENGTH_SHORT).show();
+
+                                    title_game.setVisibility(View.VISIBLE); email_text.setVisibility(View.INVISIBLE);
+                                    changeLogin_btn.setText("Don't have an account? Click here to register"); registerMode = 0;
+                                }
+                                else if(response.code() == 405) {
+                                    Log.d("Error", "User or email already in use");
+                                    Toast.makeText(getApplicationContext(),"Registration failed! Username or email already in use", Toast.LENGTH_SHORT).show();
+                                }
+                                else if(response.code() == 500) {
+                                    Log.d("Error", "Wrong password");
+                                    Toast.makeText(getApplicationContext(),"Registration failed! Validation Error", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Log.d("Error", "This is something really strange...");
+                                    Toast.makeText(getApplicationContext(),"Achievement unlocked: UNKNOWN ERROR", Toast.LENGTH_SHORT).show();
+                                }
                             }
 
                             @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(), "Sign up unsuccessful", Toast.LENGTH_SHORT).show();
+                            public void onFailure(Call<User> call, Throwable t) {
+
+                                call.cancel();
+                                Log.d("Error", "BOOM! Total failure :(");
                             }
                         });
                     }
                     catch (Exception e)
                     {
-                        Log.i("SIGNUP", "Exception: " + e.getMessage());
+                        Log.d("Sign Up", "Exception: " + e.getMessage());
                     }
                 }
+                //LOGIN WITH AN ACCOUNT
                 else {
-                    Call<ResponseBody> call = MyApiAdapter.getApiService().login(user_text.getText().toString(), password_text.getText().toString());
-                    call.enqueue(new Callback<ResponseBody>() {
+                    Call<User> call = services.logIn(user_text.getText().toString(), password_text.getText().toString());
+                    call.enqueue(new Callback<User>() {
+
                         @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            validateResponse(response);
-                            if (response.isSuccessful())
-                            {
+                        public void onResponse(Call<User> call, Response<User> response) {
+
+                            if(response.code() == 200) {
+
+                                userAccount = response.body();
+                                Log.d("User", "ID: " + userAccount.getId() + " / E-mail: " + userAccount.getEmail() + " / Username: " + userAccount.getName());
+
                                 openMenuActivity();
+                            }
+                            else if(response.code() == 404) {
+                                Log.d("Error", "User not found");
+                                Toast.makeText(getApplicationContext(),"Login failed! Make sure that everything is correct", Toast.LENGTH_SHORT).show();
+                            }
+                            else if(response.code() == 405) {
+                                Log.d("Error", "Wrong password");
+                                Toast.makeText(getApplicationContext(),"Login failed! Make sure that everything is correct", Toast.LENGTH_SHORT).show();
+                            }
+                            else if(response.code() == 500) {
+                                Log.d("Error", "Invalid inputs");
+                                Toast.makeText(getApplicationContext(),"Login failed! Make sure that everything is correct", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Log.d("Error", "This is something really strange...");
+                                Toast.makeText(getApplicationContext(),"Achievement unlocked: UNKNOWN ERROR", Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), "Error logging in",
-                                    Toast.LENGTH_SHORT).show();
+                        public void onFailure(Call<User> call, Throwable t) {
+
+                            call.cancel();
+                            Log.d("Error", "BOOM! Total failure :(");
                         }
                     });
                 }
@@ -110,15 +149,5 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
-    }
-
-    public void validateResponse(Response<ResponseBody> response) {
-
-        if(response.code() == 201){
-            Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT ).show();
-        }
-        else{
-            Toast.makeText(this, "Sign up unsuccessful", Toast.LENGTH_SHORT ).show();
-        }
     }
 }
