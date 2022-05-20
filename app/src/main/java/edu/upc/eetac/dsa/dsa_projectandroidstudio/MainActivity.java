@@ -43,14 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
                     try {
                        Call<User> call = services.signUp(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
-
                         call.enqueue(new Callback<User>() {
 
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
 
                                 if(response.code() == 200) {
-
                                     Log.d("User", "Registration completed");
                                     Toast.makeText(getApplicationContext(),"Account successfully created", Toast.LENGTH_SHORT).show();
 
@@ -73,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<User> call, Throwable t) {
-
                                 call.cancel();
                                 Log.d("Error", "BOOM! Total failure :(");
                             }
@@ -93,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                         public void onResponse(Call<User> call, Response<User> response) {
 
                             if(response.code() == 200) {
-
                                 userAccount = response.body();
                                 Log.d("User", "ID: " + userAccount.getId() + " / E-mail: " + userAccount.getEmail() + " / Username: " + userAccount.getName());
 
@@ -119,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<User> call, Throwable t) {
-
                             call.cancel();
                             Log.d("Error", "BOOM! Total failure :(");
                         }
