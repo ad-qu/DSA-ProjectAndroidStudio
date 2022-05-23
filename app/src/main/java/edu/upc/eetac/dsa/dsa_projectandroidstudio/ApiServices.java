@@ -9,10 +9,10 @@ import retrofit2.http.Path;
 
 public interface ApiServices {
 
-    @POST("/dsaApp/User/logIn")
+    @POST("/dsaApp/user/logIn")
     Call<User>logIn(@Body LogInCredentials ref);
 
-    @POST("/dsaApp/User/addUser")
+    @POST("/dsaApp/user/addUser")
     Call<User>signUp(@Body SignUpCredentials ref);
 }
 

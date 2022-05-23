@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 if(registerMode == 1) {
 
                     try {
-                        SignUpCredentials ref = new SignUpCredentials(email_text.getText().toString(), user_text.getText().toString(), password_text.getText().toString());
+                        SignUpCredentials ref = new SignUpCredentials(user_text.getText().toString(), email_text.getText().toString(), password_text.getText().toString());
                         Call<User> call = services.signUp(ref);
                         call.enqueue(new Callback<User>() {
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                             if(response.code() == 200) {
                                 userAccount = response.body();
-                                Log.d("User", "ID: " + userAccount.getId() + " / E-mail: " + userAccount.getEmail() + " / Username: " + userAccount.getName());
+                                Toast.makeText(getApplicationContext(),"Correct login!", Toast.LENGTH_SHORT).show();
 
                                 openMenuActivity();
                             }

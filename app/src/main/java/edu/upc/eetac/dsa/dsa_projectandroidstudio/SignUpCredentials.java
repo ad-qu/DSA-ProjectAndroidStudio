@@ -6,7 +6,7 @@ public class SignUpCredentials {
     private String username;
     private String password;
 
-    public SignUpCredentials(String email, String username, String password) {
+    public SignUpCredentials(String username, String email, String password) {
 
         this.email = email;
         this.username = username;
