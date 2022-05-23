@@ -17,8 +17,8 @@ public class ApiRetrofit {
         OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(logging).build();
 
         retrofit = new Retrofit.Builder()
-                //.baseUrl("http:localhost:8080")
-                .baseUrl("http://147.83.7.205:8080")
+                .baseUrl("http://10.0.2.2:8080")
+                //.baseUrl("http://147.83.7.205:8080")
                 .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

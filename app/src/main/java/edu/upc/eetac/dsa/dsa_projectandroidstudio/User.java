@@ -11,8 +11,6 @@ public class User {
     private Integer coins;
     private LinkedList<Item> inventory;
 
-    public User() { }
-
     public User(String id, String email, String name, String password, Integer coins, LinkedList<Item> inventory) {
 
         this.id = id;
@@ -29,6 +27,8 @@ public class User {
         this.name = name;
         this.password = password;
     }
+
+    public User() {}
 
     public String getId() {
         return id;

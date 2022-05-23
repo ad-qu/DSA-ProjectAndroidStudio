@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 if(registerMode == 1) {
 
                     try {
-                        Referencias referencias = new Referencias(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
-                        Call<User> call = services.signUp(referencias);
+                        SignUpCredentials ref = new SignUpCredentials(email_text.getText().toString(), user_text.getText().toString(), password_text.getText().toString());
+                        Call<User> call = services.signUp(ref);
                         call.enqueue(new Callback<User>() {
 
                             @Override
@@ -61,19 +61,15 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(),"Registration failed! Username or email already in use", Toast.LENGTH_SHORT).show();
                                 }
                                 else if(response.code() == 500) {
-                                    Log.d("Error", "Wrong password");
+                                    Log.d("Error", "Validation error");
                                     Toast.makeText(getApplicationContext(),"Registration failed! Validation Error", Toast.LENGTH_SHORT).show();
-                                }
-                                else {
-                                    Log.d("Error", "This is something really strange...");
-                                    Toast.makeText(getApplicationContext(),"Achievement unlocked: UNKNOWN ERROR", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<User> call, Throwable t) {
                                 call.cancel();
-                                Log.d("Error", "BOOM! Total failure :(");
+                                Log.d("Error", "BOOM! Total failure!");
                             }
                         });
                     }
@@ -84,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //LOGIN WITH AN ACCOUNT
                 else {
-                    Referencias referencias = new Referencias(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
-                    Call<User> call = services.logIn(referencias);
+                    LogInCredentials ref = new LogInCredentials(user_text.getText().toString(), password_text.getText().toString());
+                    Call<User> call = services.logIn(ref);
                     call.enqueue(new Callback<User>() {
 
                         @Override
@@ -109,16 +105,12 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("Error", "Invalid inputs");
                                 Toast.makeText(getApplicationContext(),"Login failed! Make sure that everything is correct", Toast.LENGTH_SHORT).show();
                             }
-                            else {
-                                Log.d("Error", "This is something really strange...");
-                                Toast.makeText(getApplicationContext(),"Achievement unlocked: UNKNOWN ERROR", Toast.LENGTH_SHORT).show();
-                            }
                         }
 
                         @Override
                         public void onFailure(Call<User> call, Throwable t) {
                             call.cancel();
-                            Log.d("Error", "BOOM! Total failure :(");
+                            Log.d("Error", "BOOM! Total failure!");
                         }
                     });
                 }
