@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 if(registerMode == 1) {
 
                     try {
-                       Call<User> call = services.signUp(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
+                        Referencias referencias = new Referencias(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
+                        Call<User> call = services.signUp(referencias);
                         call.enqueue(new Callback<User>() {
 
                             @Override
@@ -83,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //LOGIN WITH AN ACCOUNT
                 else {
-                    Call<User> call = services.logIn(user_text.getText().toString(), password_text.getText().toString());
+                    Referencias referencias = new Referencias(user_text.getText().toString(), password_text.getText().toString(), email_text.getText().toString());
+                    Call<User> call = services.logIn(referencias);
                     call.enqueue(new Callback<User>() {
 
                         @Override
