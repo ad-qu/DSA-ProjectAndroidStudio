@@ -28,8 +28,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                fragmentSelector = 1;
-                openActivity();
+                finish();
             }
         });
 
