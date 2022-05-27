@@ -32,7 +32,7 @@
         android:id="@+id/editTextEmail"
         android:layout_width="536dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/edit_text_background"
         android:drawableStart="@drawable/ic_baseline_email_24"
         android:drawablePadding="12dp"
@@ -49,15 +49,13 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="536dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/edit_text_background"
         android:drawableStart="@drawable/ic_baseline_security_24"
         android:drawablePadding="12dp"
@@ -70,12 +68,10 @@
         android:textColor="@color/white"
         android:textColorHint="#FFFFFF"
         android:textSize="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUsername"
-        app:layout_constraintVertical_bias="0.818" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
 
     <ImageButton
         android:id="@+id/imageButtonGo"
@@ -108,13 +104,12 @@
         android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:text="Don't have an account? Click here to register"
         android:textColor="#131313"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.247"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
-        app:layout_constraintVertical_bias="0.135" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
