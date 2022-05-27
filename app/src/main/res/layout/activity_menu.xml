@@ -5,62 +5,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/play_btn"
-        android:layout_width="470dp"
-        android:layout_height="287dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33"
-        app:srcCompat="@drawable/game_btn" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/rectangle" />
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
     <ImageButton
-        android:id="@+id/home_btn"
-        android:backgroundTint="@color/almost_black"
+        android:id="@+id/store_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
-
-    <ImageButton
-        android:id="@+id/profile_btn"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/almost_black"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/inventory_btn"
-        app:srcCompat="@drawable/ic_baseline_person_24" />
+        android:translationZ="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_panel"
+        app:layout_constraintEnd_toEndOf="@+id/btn_panel"
+        app:srcCompat="@drawable/ic_baseline_store_24" />
 
     <ImageButton
         android:id="@+id/inventory_btn"
-        android:backgroundTint="@color/almost_black"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/shop_btn"
-        app:srcCompat="@drawable/ic_baseline_work_24" />
+        android:layout_marginEnd="72dp"
+        android:backgroundTint="@color/almost_black"
+        android:translationZ="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_panel"
+        app:layout_constraintEnd_toEndOf="@+id/btn_panel"
+        app:srcCompat="@drawable/ic_baseline_shopping_bag_24" />
 
     <ImageButton
-        android:id="@+id/shop_btn"
-        android:backgroundTint="@color/almost_black"
+        android:id="@+id/home_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/almost_black"
+        android:translationZ="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_panel"
+        app:layout_constraintStart_toStartOf="@+id/btn_panel"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageButton
+        android:id="@+id/top_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/almost_black"
+        android:translationZ="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_panel"
+        app:layout_constraintEnd_toStartOf="@+id/inventory_btn"
+        app:srcCompat="@drawable/ic_baseline_format_list_numbered_24" />
+
+    <ImageButton
+        android:id="@+id/profile_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="168dp"
+        android:backgroundTint="@color/almost_black"
+        android:translationZ="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_panel"
+        app:layout_constraintEnd_toEndOf="@+id/btn_panel"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
+    <ImageView
+        android:id="@+id/btn_panel"
+        android:layout_width="615dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_shopping_bag_24" />
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/edit_text_background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
