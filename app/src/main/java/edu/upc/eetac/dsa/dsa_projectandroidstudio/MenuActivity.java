@@ -5,12 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+
 
 public class MenuActivity extends AppCompatActivity {
 
     int fragmentSelector = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,7 @@ public class MenuActivity extends AppCompatActivity {
         ImageButton top_btn = (ImageButton) findViewById(R.id.top_btn);
         ImageButton inventory_btn = (ImageButton) findViewById(R.id.inventory_btn);
         ImageButton store_btn = (ImageButton) findViewById(R.id.store_btn);
+        Button buttonopenFAQ = (Button) findViewById(R.id.buttonopenFAQ);
 
         back_btn.setOnClickListener(new View.OnClickListener() {
 
@@ -71,12 +73,17 @@ public class MenuActivity extends AppCompatActivity {
                 openActivity();
             }
         });
+        buttonopenFAQ.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FragmentFAQ.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void openActivity() {
-
-        Intent intent = new Intent(this, FragmentProfile.class);
-        startActivity(intent);
 
         /*if (fragmentSelector == 1) {
             Intent intent = new Intent(this, MainActivity.class);
