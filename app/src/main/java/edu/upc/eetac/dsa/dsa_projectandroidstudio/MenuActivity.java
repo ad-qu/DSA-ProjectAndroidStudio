@@ -1,8 +1,9 @@
 package edu.upc.eetac.dsa.dsa_projectandroidstudio;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -37,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                openActivity();
+
             }
         });
 
@@ -47,7 +48,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 fragmentSelector = 3;
-                openActivity();
+
             }
         });
 
@@ -57,7 +58,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 fragmentSelector = 4;
-                openActivity();
+
             }
         });
 
@@ -67,15 +68,19 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 fragmentSelector = 5;
-                openActivity();
+                openActivity(new Shop());
             }
         });
     }
 
-    private void openActivity() {
+    private void openActivity(Shop fragment) {
 
-        Intent intent = new Intent(this, FragmentProfile.class);
-        startActivity(intent);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout,fragment);
+        fragmentTransaction.commit();
+
+
 
         /*if (fragmentSelector == 1) {
             Intent intent = new Intent(this, MainActivity.class);
