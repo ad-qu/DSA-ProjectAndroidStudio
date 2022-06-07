@@ -17,6 +17,7 @@
         android:textSize="30dp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclearViewShop"
         android:layout_width="300dp"
         android:layout_height="222dp"
         android:layout_marginLeft="30dp"
