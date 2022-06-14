@@ -1,6 +1,7 @@
 package edu.upc.eetac.dsa.dsa_projectandroidstudio;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -11,6 +12,11 @@ import android.widget.ImageButton;
 public class MenuActivity extends AppCompatActivity {
 
     int fragmentSelector = 0;
+    User userAccount;
+
+    public void setUserAccount(User user) {
+        userAccount = user;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +34,6 @@ public class MenuActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
                 finish();
             }
         });
@@ -37,8 +42,7 @@ public class MenuActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-
+                fragmentSelector = 2;
             }
         });
 
@@ -46,9 +50,7 @@ public class MenuActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
                 fragmentSelector = 3;
-
             }
         });
 
@@ -56,9 +58,7 @@ public class MenuActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
                 fragmentSelector = 4;
-
             }
         });
 
@@ -66,45 +66,38 @@ public class MenuActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
                 fragmentSelector = 5;
-                openActivity(new Shop());
             }
         });
     }
 
-    private void openActivity(Shop fragment) {
-
+    private void openActivity() {
         FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = (Fragment) fragmentManager.findFragmentById(R.id.frameLayout);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout,fragment);
-        fragmentTransaction.commit();
 
+        if (fragmentSelector == 1) {
 
-
-        /*if (fragmentSelector == 1) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
         }
 
         else if(fragmentSelector == 2) {
-            Intent intent = new Intent(this, FragmentProfile.class);
-            startActivity(intent);
+            fragmentManager.beginTransaction().add(R.id.frameLayout, fragment , Profile.class.getName()).commit();
         }
 
         else if(fragmentSelector == 3) {
-            Intent intent = new Intent(this, FragmentTop.class);
-            startActivity(intent);
+            fragmentManager.beginTransaction().add(R.id.frameLayout, fragment, Ranking.class.getName()).commit();
         }
-
         else if(fragmentSelector == 4) {
-            Intent intent = new Intent(this, FragmentInventory.class);
-            startActivity(intent);
+            fragmentManager.beginTransaction().add(R.id.frameLayout, fragment, Inventario.class.getName()).commit();
+            if (fragmentTransaction.getClass().getName().equals(Inventario.class.getName()) == true) {
+                Inventario.userAccount = userAccount;
+
+
+            }
         }
 
         else if(fragmentSelector == 5) {
-            Intent intent = new Intent(this, FragmentStore.class);
-            startActivity(intent);
-        }*/
+            fragmentManager.beginTransaction().add(R.id.frameLayout, fragment, Shop.class.getName()).commit();
+        }
     }
 }

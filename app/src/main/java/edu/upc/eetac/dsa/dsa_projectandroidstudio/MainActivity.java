@@ -136,6 +136,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void openMenuActivity() {
 
+        MenuActivity menu = new MenuActivity();
+        menu.setUserAccount(userAccount);
+        openMenuActivity();
+
+
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }

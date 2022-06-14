@@ -1,12 +1,13 @@
 package edu.upc.eetac.dsa.dsa_projectandroidstudio;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,12 +54,26 @@ public class Profile extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        try {
+
+        }
+        catch (Exception e)
+        {
+            Log.d("Error", "Exception: " + e.getMessage());
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_profile, null);
+        TextView Username = (TextView) root.findViewById(R.id.textView3);
+        TextView Email = (TextView) root.findViewById(R.id.textView5);
+        TextView Id = (TextView) root.findViewById(R.id.textView13);
+        TextView Coins = (TextView) root.findViewById(R.id.textView8);
+        TextView Number_of_items = (TextView) root.findViewById(R.id.textView10);
+        TextView Language = (TextView) root.findViewById(R.id.textView12);
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }

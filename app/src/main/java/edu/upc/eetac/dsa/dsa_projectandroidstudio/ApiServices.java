@@ -1,6 +1,10 @@
 package edu.upc.eetac.dsa.dsa_projectandroidstudio;
 
+<<<<<<< HEAD
 import android.net.wifi.hotspot2.pps.Credential;
+=======
+import java.util.ArrayList;
+>>>>>>> 2360e82 (fragments incompletos)
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,5 +27,8 @@ public interface ApiServices {
 
     @POST("/dsaApp/user/addUser")
     Call<User>signUp(@Body SignUpCredentials ref);
+
+    @GET("item/inventoryList/{username}")
+    Call<ArrayList<Item>> getInventory(@Path("username") String username);
 }
 

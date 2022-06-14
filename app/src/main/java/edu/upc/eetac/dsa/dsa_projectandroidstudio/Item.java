@@ -1,6 +1,7 @@
 package edu.upc.eetac.dsa.dsa_projectandroidstudio;
 
 public class Item {
+<<<<<<< HEAD
     private String id;
     private String name;
     private String description;
@@ -74,4 +75,7 @@ public class Item {
     public void setDmgReduction(int dmgReduction) {
         this.dmgReduction = dmgReduction;
     }
+=======
+
+>>>>>>> 2360e82 (fragments incompletos)
 }

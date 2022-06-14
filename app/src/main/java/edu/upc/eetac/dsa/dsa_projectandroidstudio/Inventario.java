@@ -1,12 +1,18 @@
 package edu.upc.eetac.dsa.dsa_projectandroidstudio;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +29,8 @@ public class Inventario extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    static User userAccount;
+    ApiServices services;
 
     public Inventario() {
         // Required empty public constructor
@@ -52,6 +60,26 @@ public class Inventario extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+        try {
+            Call<ArrayList<Item>> call = services.getInventory(userAccount.getName());
+            call.enqueue(new Callback<ArrayList<Item>>() {
+
+                @Override
+                public void onResponse(Call<ArrayList<Item>> call, Response<ArrayList<Item>> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
+                    call.cancel();
+                    Log.d("Error", "BOOM! Total failure!");
+                }
+            });
+            }
+        catch (Exception e)
+        {
+            Log.d("Error", "Exception: " + e.getMessage());
         }
     }
 

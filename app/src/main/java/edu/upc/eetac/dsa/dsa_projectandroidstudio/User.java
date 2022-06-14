@@ -9,6 +9,7 @@ public class User {
     private String password;
     private String email;
     private Integer coins;
+    private String Language;
     private LinkedList<Item> inventory;
 
     public User(String id, String email, String name, String password, Integer coins, LinkedList<Item> inventory) {
