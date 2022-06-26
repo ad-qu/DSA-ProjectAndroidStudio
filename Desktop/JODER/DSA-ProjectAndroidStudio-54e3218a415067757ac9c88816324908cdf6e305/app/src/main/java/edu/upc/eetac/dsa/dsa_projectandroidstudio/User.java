@@ -9,7 +9,7 @@ public class User {
     private String password;
     private String email;
     private Integer coins;
-    private String Language;
+    private String language;
     private Integer points;
     private LinkedList<Item> inventory;
 
@@ -46,6 +46,14 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public void setLanguage(String language){
+        this.language = language;
+    }
+
+    public String getLanguage(){
+        return language;
     }
 
     public void setName(String name) {

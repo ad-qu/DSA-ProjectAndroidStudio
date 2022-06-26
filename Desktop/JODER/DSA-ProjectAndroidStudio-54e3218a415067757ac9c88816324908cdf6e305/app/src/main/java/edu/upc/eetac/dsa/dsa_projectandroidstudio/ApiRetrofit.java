@@ -22,7 +22,6 @@ public class ApiRetrofit {
                 .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         return retrofit;
     }
 }

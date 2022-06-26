@@ -3,22 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    tools:context=".Shop">
+    tools:context="Shop">
 
     <TextView
+        android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="90dp"
-        android:text="Tienda"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/black"
-        android:textSize="30dp" />
+        android:layout_marginTop="40dp"
+        android:text="Shop"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclearViewShop"
         android:layout_width="300dp"
         android:layout_height="222dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="80dp" />
+        android:layout_marginTop="90dp" />
 </RelativeLayout>

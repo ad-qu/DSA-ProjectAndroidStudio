@@ -1,13 +1,15 @@
 package edu.upc.eetac.dsa.dsa_projectandroidstudio;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import java.util.Locale;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -31,7 +33,10 @@ public class MenuActivity extends AppCompatActivity {
         String password = getIntent().getExtras().getString("pass", "");
         String id = getIntent().getExtras().getString("id", "");
         String email = getIntent().getExtras().getString("email", "");
-        userAccount = new User(id, email, name, password, 0, 0);
+        int coins = getIntent().getExtras().getInt("coins");
+        int points = getIntent().getExtras().getInt("points");
+        userAccount = new User(id, email, name, password, coins, points);
+        userAccount.setLanguage(Locale.getDefault().getLanguage());
 
         ImageButton back_btn = (ImageButton) findViewById(R.id.back_btn);
         ImageButton home_btn = (ImageButton) findViewById(R.id.home_btn);
@@ -60,8 +65,20 @@ public class MenuActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                /*
+                Bundle bundle = new Bundle();
+                bundle.putString("nombre", userAccount.getName());
+                bundle.putString("email", userAccount.getEmail());
+                bundle.putString("id", userAccount.getId());
+                bundle.putInt("coins", userAccount.getCoins());
+                bundle.putInt("points", userAccount.getPoints());
+                bundle.putString("language", userAccount.getLanguage());
+                Profile prof = new Profile();
+                prof.setArguments(bundle);
+                 */
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frameLayout, profile).commit();
+                Log.d("Error11", "Error11");
             }
         });
 
@@ -91,5 +108,9 @@ public class MenuActivity extends AppCompatActivity {
                 transaction.replace(R.id.frameLayout, shop).commit();
             }
         });
+    }
+
+    public User getUser(){
+        return userAccount;
     }
 }

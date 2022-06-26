@@ -16,6 +16,9 @@ import androidx.fragment.app.Fragment;
  */
 public class Profile extends Fragment {
 
+    String nombre, email, id, language;
+    int points, coins;
+    User user;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,6 +70,35 @@ public class Profile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        Log.d("Error12", "Error12");
+        MenuActivity activity = (MenuActivity) getActivity();
+        user = activity.getUser();
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        Log.d("Error13", "Error13");
+        Log.d("Error14", user.getName() + " " + user.getEmail() + " " + user.getId() + " " + user.getCoins() + " " + user.getPoints() + " " + user.getLanguage());
+
+        /*
+        setName(user.getName());
+        setEmail(user.getEmail());
+        setId(user.getId());
+        setCoins(String.valueOf(user.getCoins()));
+        setPoints(String.valueOf(user.getPoints()));
+        setLanguage(user.getLanguage());
+         */
+
+        TextView textView1 = (TextView) view.findViewById(R.id.textView3);
+        textView1.setText(user.getName());
+        TextView textView2 = (TextView) view.findViewById(R.id.textView5);
+        textView2.setText(user.getEmail());
+        TextView textView3 = (TextView) view.findViewById(R.id.textView13);
+        textView3.setText(user.getId());
+        TextView textView4 = (TextView) view.findViewById(R.id.textView8);
+        textView4.setText(String.valueOf(user.getCoins()));
+        TextView textView5 = (TextView) view.findViewById(R.id.textView10);
+        textView5.setText(String.valueOf(user.getPoints()));
+        TextView textView6 = (TextView) view.findViewById(R.id.textView12);
+        textView6.setText(user.getLanguage());
+        return view;
     }
 }

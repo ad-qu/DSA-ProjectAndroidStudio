@@ -1,18 +1,14 @@
 package edu.upc.eetac.dsa.dsa_projectandroidstudio;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.security.keystore.UserPresenceUnavailableException;
 import android.util.Log;
-import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,19 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
                                 Log.d("Error1", response.body().toString());
 
-                                String todo = response.body().toString();
-                                String[] split = todo.split("='");
-                                String[] split2 = split[1].split("',");
-                                String id = split2[0].toString();
-                                String[] split3 = split[2].split("',");
-                                String name = split3[0].toString();
-                                String[] split4 = split[3].split("',");
-                                String pass = split4[0].toString();
-                                String[] split5 = split[4].split("'");
-                                String email = split5[0].toString();
 
-                                userAccount = new User(id, email, name, pass, 0, 0);
-
+                                userAccount = new User();
+                                userAccount = response.body();
 
                                 Toast.makeText(getApplicationContext(),"Correct login!", Toast.LENGTH_SHORT).show();
 
@@ -155,7 +141,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public ApiServices getApi(){
+        return services;
+    }
+
     private void openMenuActivity() {
+
 
 
         Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
@@ -164,10 +155,14 @@ public class MainActivity extends AppCompatActivity {
         String pass = userAccount.getPassword();
         String id = userAccount.getId();
         String email = userAccount.getEmail();
+        int coins = userAccount.getCoins();
+        int points = userAccount.getPoints();
         intent.putExtra("name", name);
         intent.putExtra("pass", pass);
         intent.putExtra("id", id);
         intent.putExtra("email", email);
+        intent.putExtra("coins", coins);
+        intent.putExtra("points", points);
 
         startActivity(intent);
     }
