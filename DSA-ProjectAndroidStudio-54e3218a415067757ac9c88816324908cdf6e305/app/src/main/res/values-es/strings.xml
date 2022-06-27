@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DSA-ProjectAndroidStudio</string>
+    <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+    <string name="username">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Correo</string>
+    <string name="cambiar">No tiene cuenta? Clique aqui para registrarse</string>
+</resources>
