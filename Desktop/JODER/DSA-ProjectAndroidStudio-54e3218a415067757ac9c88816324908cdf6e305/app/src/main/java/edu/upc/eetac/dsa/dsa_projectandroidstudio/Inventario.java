@@ -11,18 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Inventario#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class Inventario extends Fragment {
+    ApiServices services;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +35,6 @@ public class Inventario extends Fragment {
     private String mParam2;
     User userAccount;
     List<Item> items;
-    ApiServices services;
     RecyclerView rv1;
     View view;
     AdapterDatos ai;
@@ -76,14 +76,17 @@ public class Inventario extends Fragment {
             userAccount = new User();
             userAccount = activity.getUser();
             Log.d("AA", "AA " + userAccount.getName());
-            Call<List<Item>> call = services.getInventory(userAccount.getName());
+            String username = userAccount.getName();
+            Call<List<Item>>call = services.getInventory(username);
+            Log.d("Error1", "Error1 " + userAccount.getName());
             call.enqueue(new Callback<List<Item>>() {
 
                 @Override
                 public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+                    int variable = response.code();
+                    Log.i("InventaryList CODE",":"+variable);
                     Log.d("AAA", "AAA " + response.body().toString());
-                    items.addAll(response.body());
-                    Log.d("LO QUE ME LLEGA", response.body().toString());
+                    items = response.body();
                     LinearLayoutManager l = new LinearLayoutManager(view.getContext());
                     rv1.setLayoutManager(l);
                     ai = new AdapterDatos();
@@ -108,7 +111,7 @@ public class Inventario extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
             view = inflater.inflate(R.layout.fragment_inventario, container, false);
-            rv1 = view.findViewById(R.id.recyclerview);
+            rv1 = view.findViewById(R.id.recyclerviewFaQ);
             return view;
     }
 

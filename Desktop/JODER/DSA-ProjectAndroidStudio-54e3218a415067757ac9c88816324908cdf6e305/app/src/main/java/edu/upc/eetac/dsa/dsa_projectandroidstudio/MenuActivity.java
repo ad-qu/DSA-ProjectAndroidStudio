@@ -61,6 +61,15 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        home_btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frameLayout, inicio).commit();
+            }
+        });
+
         profile_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override

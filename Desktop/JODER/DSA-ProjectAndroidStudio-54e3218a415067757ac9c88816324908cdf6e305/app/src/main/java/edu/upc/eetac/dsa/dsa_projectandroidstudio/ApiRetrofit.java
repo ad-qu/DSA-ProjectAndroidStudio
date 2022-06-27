@@ -9,6 +9,8 @@ public class ApiRetrofit {
 
     private static Retrofit retrofit;
 
+    public static final String BASE_URL = "http://10.0.2.2:8080/dsaApp/";
+
     public static Retrofit getApiService() {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
