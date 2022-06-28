@@ -1,0 +1,18 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "DSA-ProjectAndroidStudio"
+include ':app'
+include ':unityLibrary'
+project(':unityLibrary').projectDir = new File('/Users/ferra/Desktop/JODER/DSA-ProjectAndroidStudio-54e3218a415067757ac9c88816324908cdf6e305/unityLibrary')

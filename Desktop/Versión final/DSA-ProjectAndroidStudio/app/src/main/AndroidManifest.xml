@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.upc.eetac.dsa.dsa_projectandroidstudio">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DSAProjectAndroidStudio"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".UnityHandlerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ErrorAtivity"
+            android:exported="false"
+            android:label="@string/title_activity_error_ativity"
+            android:theme="@style/Theme.DSAProjectAndroidStudio.NoActionBar" />
+        <activity
+            android:name=".DoneActivity"
+            android:exported="false"
+            android:label="@string/title_activity_done"
+            android:theme="@style/Theme.DSAProjectAndroidStudio.NoActionBar" />
+        <activity
+            android:name=".DenunciarActivity"
+            android:exported="false"
+            android:label="@string/title_activity_denunciar"
+            android:theme="@style/Theme.DSAProjectAndroidStudio.NoActionBar" />
+        <activity
+            android:name=".QuestionActivity"
+            android:exported="false"
+            android:label="@string/title_activity_question"
+            android:theme="@style/Theme.DSAProjectAndroidStudio.NoActionBar" />
+        <activity
+            android:name=".FAQActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
